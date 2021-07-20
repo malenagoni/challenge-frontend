@@ -2,6 +2,7 @@ import { Box, TextInput } from "grommet";
 import React, { useEffect, useState } from "react";
 import UserCard from "../components/user.card";
 import { fetchStudents, Student } from "../services/students";
+import Link from "next/link";
 
 type Props = {};
 
@@ -16,11 +17,10 @@ const Main: React.FC<Props> = ({}) => {
 
     const onChangeHandler = (event: any) => {
         let eventValue = event.target.value;
-        console.log(eventValue)
         setInput(eventValue);
-        
+
         const users: Student[] = students?.filter((s) => `${s?.first_name} ${s?.last_name}`.toLowerCase().includes(eventValue.toLowerCase()));
-        
+
         if (eventValue === "") return setFetch((prevFetch) => !prevFetch);
         return setStudents(users);
     };
@@ -30,13 +30,18 @@ const Main: React.FC<Props> = ({}) => {
             <TextInput placeholder="type here" value={input} onChange={onChangeHandler} />
             <Box direction="row" wrap={true}>
                 {students.length > 0 ? (
-                    students?.map((s, i) => (
-                        <Box margin="10px" key={i}>
-                            <UserCard user={s} />
-                        </Box>
-                    ))
+                    students?.map((s, i) => {
+                        let link = `/${s.id}`;
+                        return (
+                            <Link href={link}>
+                                <Box margin="10px" key={i}>
+                                    <UserCard user={s} />
+                                </Box>
+                            </Link>
+                        );
+                    })
                 ) : (
-                    <div>No results</div>
+                    <div></div>
                 )}
             </Box>
         </Box>
