@@ -7,9 +7,9 @@ type Props = {
 };
 
 const UserCard: React.FC<Props> = ({ user }) => (
-  <Card height="small" width="small">
+  <Card height="small" width="small" >
     <CardBody align="center" pad="medium">
-      <Avatar src={user.avatar} />
+      <Avatar src={user.avatar} size="large" round="small" />
     </CardBody>
     <CardFooter align="start" justify="center" pad="medium">
       <Text textAlign="center">{`${user["first_name"]} ${user["last_name"]}`}</Text>

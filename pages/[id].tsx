@@ -7,10 +7,11 @@ type Props = {};
 
 const UserDetails: React.FC<Props> = ({}) => {
     const router = useRouter();
-    const { id }:any = router.query;
-    return (<div>
-        <CardDetails id={id}/>
-    </div>
+    const { id }: any = router.query;
+    return (
+        <div>
+            <CardDetails id={id} />
+        </div>
     );
 };
 
