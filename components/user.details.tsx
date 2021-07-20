@@ -4,9 +4,11 @@ import { fetchStudents, Student } from "../services/students";
 import { useRouter } from "next/router";
 
 export const CardDetails = ({ id }: any) => {
+    
     const router = useRouter();
     const [student, setStudent] = useState<Student[]>([]);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         if (id) fetching();
         console.log(student[0]);
@@ -37,7 +39,7 @@ export const CardDetails = ({ id }: any) => {
                                 <strong>Company: </strong>
                                 {`${student[0].company}`}
                             </Text>
-                            <Text textAlign="center" >
+                            <Text textAlign="center">
                                 <strong>Job: </strong>
                                 {`${student[0].job}`}
                             </Text>

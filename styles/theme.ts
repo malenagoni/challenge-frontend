@@ -90,4 +90,5 @@ export default {
     extend: `border: 2px solid white;
     box-shadow: 2px 2px 15px 1px white;`,
   }
+  
 };

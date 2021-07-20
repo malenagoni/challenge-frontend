@@ -19,7 +19,12 @@ const Main: React.FC<Props> = ({}) => {
         let eventValue = event.target.value;
         setInput(eventValue);
 
-        const users: Student[] = students?.filter((s) => `${s?.first_name} ${s?.last_name}`.toLowerCase().includes(eventValue.toLowerCase()));
+        const users: Student[] = students?.filter(
+            (s) =>
+                s?.first_name.toLowerCase().includes(eventValue.toLowerCase()) ||
+                s.last_name.toLowerCase().includes(eventValue.toLowerCase()) ||
+                `${s?.first_name} ${s?.last_name}`.toLowerCase().includes(eventValue.toLowerCase())
+        );
 
         if (eventValue === "") return setFetch((prevFetch) => !prevFetch);
         return setStudents(users);
@@ -33,8 +38,8 @@ const Main: React.FC<Props> = ({}) => {
                     students?.map((s, i) => {
                         let link = `/${s.id}`;
                         return (
-                            <Link href={link}>
-                                <Box margin="10px" key={i}>
+                            <Link href={link} key={i}>
+                                <Box margin="10px">
                                     <UserCard user={s} />
                                 </Box>
                             </Link>

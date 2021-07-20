@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     const [icon, setIcon] = useState("Moon");
+    
     return (
         <Grommet theme={NGTTheme} themeMode={icon === "Moon" ? "light" : "dark"}>
             <Box height="100vh" width="100vw">

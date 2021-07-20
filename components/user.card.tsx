@@ -3,18 +3,18 @@ import React from "react";
 import { Student } from "../services/students";
 
 type Props = {
-  user: Student;
+    user: Student;
 };
 
 const UserCard: React.FC<Props> = ({ user }) => (
-  <Card height="small" width="small" >
-    <CardBody align="center" pad="medium">
-      <Avatar src={user.avatar} size="large" round="small" />
-    </CardBody>
-    <CardFooter align="start" justify="center" pad="medium">
-      <Text textAlign="center">{`${user["first_name"]} ${user["last_name"]}`}</Text>
-    </CardFooter>
-  </Card>
+    <Card height="small" width="small">
+        <CardBody align="center" pad="medium">
+            <Avatar src={user.avatar} size="large" round="small" />
+        </CardBody>
+        <CardFooter align="start" justify="center" pad="medium">
+            <Text textAlign="center">{`${user["first_name"]} ${user["last_name"]}`}</Text>
+        </CardFooter>
+    </Card>
 );
 
 export default UserCard;
