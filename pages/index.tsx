@@ -10,6 +10,10 @@ const Main: React.FC<Props> = ({}) => {
     // TODO
   };
 
+  
+  const students:Promise<Student[]> = fetchStudents()
+  console.log(students)
+
   return (
     <Box direction="column" pad="medium" height="100%" overflow="auto">
       <TextInput placeholder="type here" value="" onChange={onChangeHandler} />
