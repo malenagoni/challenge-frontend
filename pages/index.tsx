@@ -6,26 +6,28 @@ import { fetchStudents, Student } from "../services/students";
 type Props = {};
 
 const Main: React.FC<Props> = ({}) => {
-  const onChangeHandler = (event: any) => {
-    // TODO
-  };
+    const onChangeHandler = (event: any) => {
+        // TODO
+    };
 
-  
-  const students:Promise<Student[]> = fetchStudents()
-  console.log(students)
+    const [students, setStudents] = useState<Student[]>([]);
 
-  return (
-    <Box direction="column" pad="medium" height="100%" overflow="auto">
-      <TextInput placeholder="type here" value="" onChange={onChangeHandler} />
-      <Box direction="row" wrap={true}>
-        {/* {students.map((s) => (
-          <Box margin="10px">
-            <UserCard user={s} />
-          </Box>
-        ))} */}
-      </Box>
-    </Box>
-  );
+    useEffect(() => {
+        fetchStudents().then((data: Student[]) => setStudents(data));
+    }, []);
+    
+    return (
+        <Box direction="column" pad="medium" height="100%" overflow="auto">
+            <TextInput placeholder="type here" value="" onChange={onChangeHandler} />
+            <Box direction="row" wrap={true}>
+                {students.map((s,i) => (
+                    <Box margin="10px" key={i}>
+                        <UserCard user={s} />
+                    </Box>
+                ))}
+            </Box>
+        </Box>
+    );
 };
 
 export default Main;
