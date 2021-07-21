@@ -28,8 +28,8 @@ export const CardDetails = ({ id }: any) => {
                 <h1>Loading..</h1>
             ) : (
                 <Box direction="row" border={{ color: "brand", size: "large" }} pad="medium" width="50%" height="100%" overflow="auto">
-                    <Card height="100%" width="100%" align="center">
-                        <Avatar src={student[0].avatar} size="large" />
+                    <Card height="100%" width="100%" align="center" >
+                        <Avatar src={student[0].avatar} size="large" margin={{ top: '30px' }}/>
                         <CardBody align="center" pad="large">
                             <Text textAlign="center">
                                 <strong>Full Name: </strong>
