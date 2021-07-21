@@ -79,4 +79,15 @@ export default {
     line: {},
   },
   meter: {},
+  card: {
+    container: {
+      background: {
+        dark: '#353B41',
+      },
+    },
+  },
+  avatar: {
+    extend: `border: 2px solid white;
+    box-shadow: 2px 2px 15px 1px white;`,
+  }
 };

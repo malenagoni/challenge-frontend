@@ -2,26 +2,55 @@ import { Box, TextInput } from "grommet";
 import React, { useEffect, useState } from "react";
 import UserCard from "../components/user.card";
 import { fetchStudents, Student } from "../services/students";
+import Link from "next/link";
 
 type Props = {};
 
 const Main: React.FC<Props> = ({}) => {
-  const onChangeHandler = (event: any) => {
-    // TODO
-  };
+    const [students, setStudents] = useState<Student[]>([]);
+    const [input, setInput] = useState("");
+    const [fetch, setFetch] = useState(true);
 
-  return (
-    <Box direction="column" pad="medium" height="100%" overflow="auto">
-      <TextInput placeholder="type here" value="" onChange={onChangeHandler} />
-      <Box direction="row" wrap={true}>
-        {/* {students.map((s) => (
-          <Box margin="10px">
-            <UserCard user={s} />
-          </Box>
-        ))} */}
-      </Box>
-    </Box>
-  );
+    useEffect(() => {
+        fetchStudents().then((data: Student[]) => setStudents(data));
+    }, [fetch]);
+
+    const onChangeHandler = (event: any) => {
+        let eventValue = event.target.value;
+        setInput(eventValue);
+
+        const users: Student[] = students?.filter(
+            (s) =>
+                s?.first_name.toLowerCase().includes(eventValue.toLowerCase()) ||
+                s.last_name.toLowerCase().includes(eventValue.toLowerCase()) ||
+                `${s?.first_name} ${s?.last_name}`.toLowerCase().includes(eventValue.toLowerCase())
+        );
+
+        if (eventValue === "") return setFetch((prevFetch) => !prevFetch);
+        return setStudents(users);
+    };
+
+    return (
+        <Box direction="column" pad="medium" height="100%" overflow="auto">
+            <TextInput placeholder="type here" value={input} onChange={onChangeHandler} />
+            <Box direction="row" wrap={true}>
+                {students.length > 0 ? (
+                    students?.map((s, i) => {
+                        let link = `/${s.id}`;
+                        return (
+                            <Link href={link} key={i}>
+                                <Box margin="10px">
+                                    <UserCard user={s} />
+                                </Box>
+                            </Link>
+                        );
+                    })
+                ) : (
+                    <div></div>
+                )}
+            </Box>
+        </Box>
+    );
 };
 
 export default Main;

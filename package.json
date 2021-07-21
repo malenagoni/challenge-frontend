@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.11",
+    "babel-preset-next": "^1.4.0",
     "grommet": "^2.17.3",
     "grommet-icons": "^4.6.0",
     "next": "10.2.0",
